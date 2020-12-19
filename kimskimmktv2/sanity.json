@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "Sanity"
+    "name": "kims-kim-mkt-v2"
   },
   "api": {
-    "projectId": "ln989u2m",
+    "projectId": "nslq2l3o",
     "dataset": "production"
   },
   "plugins": [

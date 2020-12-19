@@ -1,0 +1,35 @@
+export default {
+  name: "personal",
+  title: "Personal",
+  type: "document",
+  fields: [
+    {
+      name: "name",
+      title: "Name",
+      type: "string",
+    },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "name",
+        maxLength: 69,
+      },
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "text",
+      description: "Tell us about this person",
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    },
+  ],
+};

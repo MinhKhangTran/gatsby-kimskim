@@ -1,5 +1,5 @@
 {
-  "name": "sanity",
+  "name": "kimskimmktv2",
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -25,7 +25,9 @@
     "react": "^17.0",
     "react-dom": "^17.0"
   },
-  "devDependencies": {
-    "prettier": "^2.2.1"
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MinhKhangTran/gatsby-kimskim.git"
   }
 }
