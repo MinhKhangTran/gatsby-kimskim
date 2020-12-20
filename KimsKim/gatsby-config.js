@@ -12,14 +12,14 @@ export default {
     `@chakra-ui/gatsby-plugin`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    // {
-    //   resolve: "gatsby-source-sanity",
-    //   options: {
-    //     projectId: "ln989u2m",
-    //     dataset: "production",
-    //     watchMode: true,
-    //     token: process.env.SANITY_TOKEN,
-    //   },
-    // },
+    {
+      resolve: "gatsby-source-sanity",
+      options: {
+        projectId: "nslq2l3o",
+        dataset: "production",
+        watchMode: true,
+        token: process.env.SANITY_TOKEN,
+      },
+    },
   ],
 }

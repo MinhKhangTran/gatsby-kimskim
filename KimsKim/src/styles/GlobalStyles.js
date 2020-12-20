@@ -1,17 +1,7 @@
 import { createGlobalStyle } from "styled-components"
-import fonts from "./schoolbell.ttf"
 import bg from "../assets/i-like-food.svg"
 
-export const Typography = createGlobalStyle`
-@font-face {
-    font-family:schoolbell, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    src: url(${fonts});
-}
-html{
-    font-family:SchoolBell;
-}
-`
-export const Background = createGlobalStyle`
+const Background = createGlobalStyle`
 :root{
     --lila:#8272a7;
 }
@@ -50,3 +40,5 @@ html::after{
     border: 3px solid var(--white);
   }
 `
+
+export default Background

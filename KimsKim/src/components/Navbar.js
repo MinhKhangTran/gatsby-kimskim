@@ -8,7 +8,7 @@ const Navbar = () => {
       <Flex
         justify="space-around"
         color="lila.300"
-        fontSize="xl"
+        fontSize={{ base: "lg", md: "xl" }}
         fontWeight="semibold"
         pt={2}
       >
@@ -24,6 +24,7 @@ const Navbar = () => {
         </Link>
         <Box
           mt="-50px"
+          display={{ base: "none", md: "block" }}
           bg="white"
           w="150px"
           h="100px"
