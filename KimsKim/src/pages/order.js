@@ -19,6 +19,7 @@ import { useGlobalContext } from "../components/orderContext"
 import { formatPrice } from "../utils/formatPrice"
 import { useForm } from "../hooks/useForm"
 import { useOrder } from "../hooks/useOrder"
+import { getTotal } from "../utils/getTotal"
 
 const Order = ({ data }) => {
   const { addToOrder, order, removeFromOrder } = useGlobalContext()
@@ -28,7 +29,10 @@ const Order = ({ data }) => {
     name: "",
     yuzuTea: "",
   })
-  const { submitOrder } = useOrder()
+  const { submitOrder, loading, error, message } = useOrder({
+    foods,
+    formInput,
+  })
   return (
     <Box p={8}>
       <Heading>Möchtest du etwas Bestellen?</Heading>
@@ -139,24 +143,15 @@ const Order = ({ data }) => {
             <Text fontSize="lg">Du hast derzeit keine Bestellungen</Text>
           ) : (
             <Text fontSize="lg">
-              Deine Summe beträgt{" "}
-              {order.reduce((total, current) => {
-                const food = foods.find(
-                  singleFood => singleFood.id === current.id
-                )
-                {
-                  /* console.log(typeof total) */
-                }
-                const summe = total + food.price
-                return summe
-              }, 0)}{" "}
-              cent :D
+              Deine Summe beträgt {formatPrice(getTotal(order, foods))}
             </Text>
           )}
         </Box>
-        <Button type="submit" colorScheme="blue">
+        <Button isLoading={loading} type="submit" colorScheme="blue">
           Jetzt Bestellen
         </Button>
+        {error && <Text>Fehler:{error}</Text>}
+        {message && <Text>{message}</Text>}
       </form>
     </Box>
   )

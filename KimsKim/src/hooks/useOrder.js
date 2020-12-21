@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useGlobalContext } from "../components/orderContext"
+import { formatPrice } from "../utils/formatPrice"
+import { getTotal } from "../utils/getTotal"
 
 /**
  * Order function with serverless functions
@@ -10,15 +12,61 @@ import { useGlobalContext } from "../components/orderContext"
  * 2.3. checking if everything worked
  */
 
-export const useOrder = () => {
-  const [error, setError] = useState(false)
+export const useOrder = ({ foods, formInput }) => {
+  // 1. State
+  const [error, setError] = useState()
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
   const { order } = useGlobalContext()
 
-  const submitOrder = e => {
+  const getFoodFromOrder = (order, foods) => {
+    return order.map(singleOrder => {
+      const food = foods.find(singleFood => singleFood.id === singleOrder.id)
+      return {
+        ...singleOrder,
+        name: food.name,
+        thumbnail: food.image.asset.fixed.src,
+        price: formatPrice(food.price),
+      }
+    })
+  }
+
+  //   2. Submit
+  const submitOrder = async e => {
     e.preventDefault()
-    console.log(order)
+    setLoading(true)
+    setError(null)
+    // 2.1 Gather data
+    const body = {
+      order: getFoodFromOrder(order, foods),
+      total: getTotal(order, foods),
+      // from form
+      name: formInput.name,
+      email: formInput.email,
+      yuzuTea: formInput.yuzuTea,
+    }
+    console.log(body)
+    // POST
+    const res = await fetch(
+      `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    )
+    const text = JSON.parse(await res.text())
+
+    // 2.3 Checking
+    if (res.status >= 400 && res.status < 600) {
+      setLoading(false)
+      setError(text.message)
+    } else {
+      setLoading(false)
+      setMessage("Gut. Komm her und hol dein Essen")
+    }
   }
 
   return { error, loading, message, submitOrder }
