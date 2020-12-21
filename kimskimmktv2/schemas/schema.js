@@ -8,6 +8,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import category from "./category";
 import food from "./food";
 import personal from "./personal";
+import storeSettings from "./storeSettings";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -19,6 +20,7 @@ export default createSchema({
     category,
     food,
     personal,
+    storeSettings,
     // The following are document types which will appear
     // in the studio.
     // When added to this list, object types can be used as

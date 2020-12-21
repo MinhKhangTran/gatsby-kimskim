@@ -41,16 +41,17 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ message: "Warum bestellst du nichts?" }),
     }
   }
-}
+  // ===========================================  Sending email=============================
 
-// ===========================================  Sending email=============================
-const info = await transporter.sendMail({
-  from: "Kim's Kim <Kimbo@example.com>",
-  to: `${body.name} <${body.email}>, orders@example.com`,
-  subject: "Neue Bestellung",
-  html: `<p>Deine Bestellung ist in 20 min da. Kostet dich ${total} </p>`,
-})
-return {
-  statusCode: 200,
-  body: JSON.stringify({ message: "Erfolg" }),
+  const info = await transporter.sendMail({
+    from: "Slick's Slices <slick@example.com>",
+    to: `${body.name} <${body.email}>, orders@example.com`,
+    subject: "New order!",
+    html: `<p>Deine Bestellung ist in 20 min da. Kostet dich ${body.total} </p>`,
+  })
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "Erfolg" }),
+  }
 }

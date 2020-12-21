@@ -59,13 +59,14 @@ export const useOrder = ({ foods, formInput }) => {
     )
     const text = JSON.parse(await res.text())
 
-    // 2.3 Checking
+    // check if everything worked
     if (res.status >= 400 && res.status < 600) {
-      setLoading(false)
+      setLoading(false) // turn off loading
       setError(text.message)
     } else {
+      // it worked!
       setLoading(false)
-      setMessage("Gut. Komm her und hol dein Essen")
+      setMessage("Success! Come on down for your pizza")
     }
   }
 
