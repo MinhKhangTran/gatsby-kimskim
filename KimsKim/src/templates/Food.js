@@ -6,12 +6,12 @@ import { formatPrice } from "../utils/formatPrice"
 
 const Food = ({ data }) => {
   const food = data.sanityFood
-  console.log(food)
+  // console.log(food)
   return (
-    <Box>
+    <Box w={{ base: "90%" }} mx={{ base: "auto" }}>
       <Flex justify="center" mt={6} wrap>
         <Img fixed={food.image.asset.fixed} alt={food.name} />
-        <Box ml={{ base: "0", md: "4" }} fontSize="lg">
+        <Box ml={{ base: "2", md: "4" }} fontSize="lg">
           <Text fontSize="2xl" color="purple.400">
             {food.name}
           </Text>
@@ -19,6 +19,7 @@ const Food = ({ data }) => {
           {food.category.map(cat => {
             return (
               <Badge
+                key={cat.id}
                 fontSize="xl"
                 colorScheme={
                   cat.name === "Sauer"

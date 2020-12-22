@@ -37,7 +37,7 @@ const Order = ({ data }) => {
     <Box p={8}>
       <Heading>Möchtest du etwas Bestellen?</Heading>
       <form onSubmit={submitOrder}>
-        <FormControl id="email" isRequired>
+        <FormControl id="email" isRequired isDisabled={loading}>
           <FormLabel>E-Mail Adresse</FormLabel>
           <Input
             type="email"
@@ -48,7 +48,7 @@ const Order = ({ data }) => {
             placeholder="Deine Email Adresse"
           />
         </FormControl>
-        <FormControl id="name" isRequired>
+        <FormControl id="name" isRequired isDisabled={loading}>
           <FormLabel>Name</FormLabel>
           <Input
             type="text"
@@ -93,6 +93,7 @@ const Order = ({ data }) => {
                     size="sm"
                     colorScheme="blue"
                     aria-label="add to order"
+                    isDisabled={loading}
                     icon={<MdAdd />}
                     onClick={() => addToOrder({ id: food.id })}
                   ></IconButton>
@@ -105,6 +106,11 @@ const Order = ({ data }) => {
             <Heading color="blue.400" as="h3">
               Deine Bestellung
             </Heading>
+            {order.length === 0 && (
+              <Text fontSize="lg" my={2}>
+                Füge etwas aus unserem Menü hinzu
+              </Text>
+            )}
             {order.map((bestellung, index) => {
               const food = foods.find(
                 singleFood => singleFood.id === bestellung.id
@@ -124,6 +130,7 @@ const Order = ({ data }) => {
                   <IconButton
                     size="sm"
                     colorScheme="red"
+                    isDisabled={loading}
                     aria-label="remove from order"
                     icon={<FaTimes />}
                     onClick={() => {
@@ -151,7 +158,11 @@ const Order = ({ data }) => {
           Jetzt Bestellen
         </Button>
         {error && <Text>Fehler:{error}</Text>}
-        {message && <Text>{message}</Text>}
+        {message && (
+          <Text mt={4} fontSize="lg">
+            {message}
+          </Text>
+        )}
       </form>
     </Box>
   )

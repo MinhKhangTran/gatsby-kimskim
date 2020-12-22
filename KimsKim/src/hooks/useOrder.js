@@ -66,7 +66,7 @@ export const useOrder = ({ foods, formInput }) => {
     } else {
       // it worked!
       setLoading(false)
-      setMessage("Success! Come on down for your pizza")
+      setMessage("Deine Bestellung wurde entgegen genommen :D")
     }
   }
 
