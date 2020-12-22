@@ -30,6 +30,7 @@
     "isomorphic-fetch": "^3.0.0",
     "netlify-cli": "^2.69.10",
     "netlify-lambda": "^2.0.2",
+    "nodemailer": "^6.4.17",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
